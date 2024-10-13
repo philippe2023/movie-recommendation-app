@@ -38,3 +38,24 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# Ignore ml 
+ml/.env
+ml/.DS_Store
+*.in
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+ml/.ipynb_checkpoints/
+
+# System files
+.DS_Store
