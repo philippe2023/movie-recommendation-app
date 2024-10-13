@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: 'about'
   get 'contact', to: 'pages#contact', as: 'contact'
   # config/routes.rb
-  resources :movies, only: [:show]
+  resources :movies, only: [:index, :show] do
+    member do
+      get 'similar'
+    end
+  end
   # Reveal health status on /up
   get "up" => "rails/health#show", as: :rails_health_check
 end

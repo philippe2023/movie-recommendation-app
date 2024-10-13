@@ -1,0 +1,25 @@
+<!-- app/views/movies/similar.html.erb -->
+
+<div class="container mx-auto mt-10">
+    <h1 class="text-2xl font-bold">Movies Similar to "<span class="text-red-600"><%= @movie.title %></span>"</h1>
+
+    <% if @similar_movies.any? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <% @similar_movies.each do |movie| %>
+                <div class="rounded-xl p-4">
+                    <% if movie.poster_url.present? %>
+                        <img src="<%= movie.poster_url %>" alt="<%= movie.title %>" class="w-full aspect-square rounded-2xl object-cove">
+                    <% else %>
+                        <div class="w-full aspect-square bg-gray-200 flex items-center justify-center rounded-2xl">
+                            <span>No Image Available</span>
+                        </div>
+                    <% end %>
+                    <h3 class="text-lg font-semibold"><%= link_to movie.title, movie_path(movie.imdb_id), class: "text-red-600 hover:underline" %></h3>
+                    <p class="text-gray-600"><%= movie.release_year %> | <%= movie.genres %></p>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <p>No similar movies found.</p>
+    <% end %>
+</div>

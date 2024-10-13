@@ -1,15 +1,17 @@
 <!-- app/views/movies/show.html.erb -->
 
 <div class="container mx-auto mt-10">
-    <div class="flex flex-col md:flex-row">
-        <% if @movie['Poster'] != 'N/A' %>
-        <img src="<%= @movie['Poster'] %>" alt="<%= @movie['Title'] %>" class="w-full md:w-1/3 h-auto object-cover mb-4 md:mb-0 rounded-xl">
-        <% end %>
-        <div class="md:ml-6">
-        <h1 class="text-3xl font-bold"><%= @movie['Title'] %></h1>
-        <p class="text-gray-600"><%= @movie['Year'] %> | <%= @movie['Genre'] %></p>
-        <p class="mt-4"><%= @movie['Plot'] %></p>
-        <!-- Add more movie details as desired -->
-        </div>
+  <!-- Movie Details -->
+  <div class="flex flex-col md:flex-row">
+    <% if @movie.poster_url.present? %>
+      <img src="<%= @movie.poster_url %>" alt="<%= @movie.title %>" class="w-full md:w-1/3 h-auto object-cover mb-4 md:mb-0">
+    <% end %>
+    <div class="md:ml-6">
+      <h1 class="text-3xl font-bold"><%= @movie.title %></h1>
+      <p class="text-gray-600"><%= @movie.release_year %> | <%= @movie.genres %></p>
+      <p class="mt-4"><%= @movie.plot %></p>
+      <!-- Add more movie details as desired -->
+      <%= link_to 'View Similar Movies', similar_movie_path(@movie.imdb_id), class: "mt-4 inline-block px-4 py-2 bg-red-600 text-white rounded hover:bg-indigo-700" %>
     </div>
+  </div>
 </div>
